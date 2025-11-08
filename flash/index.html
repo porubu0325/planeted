@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./flash.css">
 
     <!-- JavaScript読み込み -->
-    <script src="../js/menu.js"></script>
+    <script src="../js/common.js"></script>
     <script src="./ruffle/ruffle.js"></script>
 </head>
 <body>
@@ -25,30 +25,53 @@
     <!-- 一覧
     小小系列 - Xiao Xiao 1(01.swf) - Xiao Xiao 2 (02.swf) - Xiao Xiao 3 (03.swf)
     Eden - あるエアコンの修繕(e1.swf) - あるコンビニの宣伝(02.swf) - ある夕食の風景(03.swf)
-    ドラサイト - ドラ1 (dora.swf) - ドラえもん(dooraemon.swf) - what - とびだしゃ(tobidasi.swf) - 再起動(saikido.swf) - ラディえもん(radhiemon.swf) - orasaito.swf - ora1.swf - aaaah.swf - スピルバソ (spil.swf)
-    ゲーム - Windows 3.1からの脱出(win31esc - おいしいコロッケをつくろう！(korotuke.swf) - くまのプーさんのホームランダービー！(homerun.swf) - 誰か助けてもなー(dare.swf) - 
+    ドラサイト - ドラ1 (dora.swf) - ドラえもん(dooraemon.swf) - what - とびだしゃ(tobidasi.swf) - 再起動(saikido.swf) - ラディえもん(radhiemon.swf) - orasaito.swf - ora1.swf - aaaah.swf - スピルバソ (spil.
     ビデオ - 赤い部屋(red_room1.swf) - Nightmare City(nightmare.swf) - 122307.swf
     その他 - 7.swf - 
     -->
     <main>
         <h2>Flash倉庫</h2>
-        <p>いろんなFlashを集めてみました。<br><a href="http://ruffle.rs" target="_blank">Ruffle</a>を使うことで再生ができます。<br>※PC推奨です。問題があれば削除します</p>
+        <p>いろんな懐かしいFlashを集めてみました。Flash Playerは2021年1月にサポート終了していますが、<a href="http://ruffle.rs" target="_blank">Ruffle</a>というオープンソースのエミュレータを利用することによりFlash Playerがなくても動作できるようになっています。
         <!-- Ruffleの読み込み -->
-        <h3>ホラー・ドッキリ</h3>
+        <section>
         <nav id="menu">
-            <button data-swf="072514.swf">ウォーリーをさがさないで</button>
+            <article>
+                <h3>動画</h3>
+                <button data-swf="./rasaito/dora.swf">ドラ１ まるかいててー（仮）</button>
+                <button data-swf="./xiao/01.swf">小小作品01</button>
+                <button data-swf="./xiao/02.swf">小小作品02</button>
+                <button data-swf="./xiao/03.swf">小小作品03</button>
+                <button data-swf="072514.swf">ウォーリーをさがさないで</button>
+                <button data-swf="002.swf">名古屋はええよ！やっとかめ</button>
+                <button data-swf="nightmare.swf">Nightmare City</button>
+                <button data-swf="maiahi.swf">恋のマイアヒ</button>
+                <button data-swf="youareanidiot.swf">You are an idiot!</button>
+                <button data-swf="2chkiki.swf">2ちゃんねる 8月危機</button>
+                <button data-swf="moudamepo.swf">もうだめぽ</button>
+                <button data-swf="natsumi.swf">なつみSTEP!</button>
+                <button data-swf="natsumi-omake.swf">なつみSTEP! - おまけ</button>
+                <button data-swf="nezumi.swf">ネズミーマウスマーチ</button>
+            </article>
+            <article>
+               <h3>ゲーム</h3>
+                <button data-swf="homerun.swf">くまのプーさんのホームランダービー！</button>
+                <button data-swf="win31esc.swf">Windows 3.1からの脱出</button>
+                <button data-swf="korotuke.swf">おいしいコロッケをつくろう！</button>
+                <button data-swf="dare.swf">誰か開けてモナー</button>
+                <button data-swf="red_room1.swf">赤い部屋</button>
+            </article>
         </nav>
-        <h3>その他</h3>
-        <nav id="menu">
-            <button data-swf="homerun.swf">くまのプーさんのホームランダービー！</button>
-            <button data-swf="win31esc.swf">Windows 3.1からの脱出</button>
-            <button data-swf="korotuke.swf">おいしいコロッケをつくろう！</button>
-            <button data-swf="dare.swf">誰か開けてモナー</button>
-        </nav>
-         <div></div>
-        <div id="flash-container">
-            <div class="no-content">上のメニューからFlashを選択してください</div>
-        </div>
+        </section>
+        <section id="player">
+            <div id="flash-container">
+                <div class="no-content">上のメニューからFlashを選択してください</div>
+            </div>
+        </section>
+        <section>
+            <h3>注意</h3>
+            <p>※スマートフォンでも動かせますが、ゲーム系は操作できない可能性があるため、基本PC推奨です。<br>
+        ※このウェブサイトは、インターネット遺産の保護を目的としてswfファイルの保管および運営を行っていますが、なにか問題があればこちらからご連絡ください。直ちに対応、及び削除いたします。</p></p>
+        </section>
     </main>
     
     <script>
@@ -128,5 +151,8 @@
             }
         });
     </script>
+
+
+    <footer class="footer_class"><div id="footer"></div></footer>
 </body>
 </html>
