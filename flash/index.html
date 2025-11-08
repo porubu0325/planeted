@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flash Hub</title>
+
+    <!-- CSS読み込み -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/main_m.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/header_m.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/footer_m.css">
+    <link rel="stylesheet" href="./flash.css">
+
+    <!-- JavaScript読み込み -->
+    <script src="../js/menu.js"></script>
+    <script src="./ruffle/ruffle.js"></script>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <!-- メインコンテンツ -->
+
+    <!-- 一覧
+    小小系列 - Xiao Xiao 1(01.swf) - Xiao Xiao 2 (02.swf) - Xiao Xiao 3 (03.swf)
+    Eden - あるエアコンの修繕(e1.swf) - あるコンビニの宣伝(02.swf) - ある夕食の風景(03.swf)
+    ドラサイト - ドラ1 (dora.swf) - ドラえもん(dooraemon.swf) - what - とびだしゃ(tobidasi.swf) - 再起動(saikido.swf) - ラディえもん(radhiemon.swf) - orasaito.swf - ora1.swf - aaaah.swf - スピルバソ (spil.swf)
+    ゲーム - Windows 3.1からの脱出(win31esc - おいしいコロッケをつくろう！(korotuke.swf) - くまのプーさんのホームランダービー！(homerun.swf) - 誰か助けてもなー(dare.swf) - 
+    ビデオ - 赤い部屋(red_room1.swf) - Nightmare City(nightmare.swf) - 122307.swf
+    その他 - 7.swf - 
+    -->
+    <main>
+        <h2>Flash倉庫</h2>
+        <p>いろんなFlashを集めてみました。<br><a href="http://ruffle.rs" target="_blank">Ruffle</a>を使うことで再生ができます。<br>※PC推奨です。問題があれば削除します</p>
+        <!-- Ruffleの読み込み -->
+        <h3>ホラー・ドッキリ</h3>
+        <nav id="menu">
+            <button data-swf="072514.swf">ウォーリーをさがさないで</button>
+        </nav>
+        <h3>その他</h3>
+        <nav id="menu">
+            <button data-swf="homerun.swf">くまのプーさんのホームランダービー！</button>
+            <button data-swf="win31esc.swf">Windows 3.1からの脱出</button>
+            <button data-swf="korotuke.swf">おいしいコロッケをつくろう！</button>
+            <button data-swf="dare.swf">誰か開けてモナー</button>
+        </nav>
+         <div></div>
+        <div id="flash-container">
+            <div class="no-content">上のメニューからFlashを選択してください</div>
+        </div>
+    </main>
+    
+    <script>
+        // URLパラメータの取得
+        function getURLParameter(name) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name);
+        }
+
+        // URLパラメータの設定
+        function setURLParameter(name, value) {
+            const url = new URL(window.location);
+            url.searchParams.set(name, value);
+            window.history.pushState({}, '', url);
+        }
+
+        // Flashの読み込み
+        function loadFlash(swfFile) {
+            if (!swfFile) return;
+
+            const container = document.getElementById('flash-container');
+            container.innerHTML = '';
+
+            const playerWrapper = document.createElement('div');
+            playerWrapper.id = 'player-wrapper';
+            container.appendChild(playerWrapper);
+
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            playerWrapper.appendChild(player);
+
+            player.style.width = '100%';
+            player.style.height = '100%';
+
+            const swfUrl = `./swf/${swfFile}`;
+            player.load(swfUrl);
+
+            // アクティブなボタンの更新
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.swf === swfFile) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // URLパラメータの更新
+            setURLParameter('swf', swfFile);
+        }
+
+        // メニューボタンのイベントリスナー
+        document.getElementById('menu').addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') {
+                const swfFile = e.target.dataset.swf;
+                loadFlash(swfFile);
+            }
+        });
+
+        // ページ読み込み時の処理
+        window.addEventListener('DOMContentLoaded', () => {
+            const swfParam = getURLParameter('swf');
+            if (swfParam) {
+                loadFlash(swfParam);
+            }
+        });
+
+        // ブラウザの戻る/進むボタン対応
+        window.addEventListener('popstate', () => {
+            const swfParam = getURLParameter('swf');
+            if (swfParam) {
+                loadFlash(swfParam);
+            } else {
+                document.getElementById('flash-container').innerHTML = 
+                    '<div class="no-content">上のメニューからFlashを選択してください</div>';
+                document.querySelectorAll('nav button').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

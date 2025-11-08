@@ -1,0 +1,2 @@
+# PLANETED WEBSITE REPOSITORY
+なんとこのサイトはオープンソースでございます
